@@ -15,5 +15,4 @@ const UserList = ({ users, posts }) => {
   );
 };
  
-export default UserList;
- 
+export default UserList; 

@@ -1,8 +1,9 @@
 
 
+import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { fetchUsers, fetchAllPosts } from '../api/userApi';
-import { Container, Button, Typography } from '@mui/material';
+import { Container, Button, Typography ,Box} from '@mui/material';
 import UserList from '../components/UserList';
  
 const Users = () => {
@@ -24,15 +25,25 @@ const Users = () => {
   }, []);
 
  
-  return (
-    <Container sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>User List</Typography>
-      <UserList users={users} posts={posts} />
-      <Button variant="contained" onClick={loadUsers} sx={{ mt: 3 }}>
-        Show More
+return (
+  <Container sx={{ mt: 4 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+      <Typography variant="h4">User List</Typography>
+      
+      <Button variant="outlined" component={Link} to="/posts">
+                   View All Posts
       </Button>
-    </Container>
-  );
+      <Button variant="outlined" component={Link} to="/users/list">
+              View as List
+       </Button>
+    </Box>
+
+    <UserList users={users} posts={posts} />
+
+    <Button variant="contained" onClick={loadUsers} sx={{ mt: 3 }}>
+      Show More
+    </Button>
+  </Container>
+);
 };
- 
 export default Users;

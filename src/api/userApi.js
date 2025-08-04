@@ -54,5 +54,19 @@ export const getPostsByUserId = async (userId) => {
   if (!res.ok) await handleError(res);
   return res.json();
 };
+export const fetchPostsPaginated = async (limit, skip) => {
+  const res = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`);
+  const data = await res.json();
+  return data.posts;
+};
 
+export const fetchUsersMap = async () => {
+  const res = await fetch("https://dummyjson.com/users?limit=100");
+  const data = await res.json();
+  const userMap = {};
+  data.users.forEach(user => {
+    userMap[user.id] = `${user.firstName} ${user.lastName}`;
+  });
+  return userMap;
+};
 
